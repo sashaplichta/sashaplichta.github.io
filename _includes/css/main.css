@@ -8,10 +8,6 @@
     overflow-x: hidden;
 }
 
-body.text-left {
-    text-align: left;
-}
-
 p {
     font-size: 20px;
 }
@@ -19,6 +15,11 @@ p {
 p.small {
     font-size: 16px;
 }
+
+p.modal-body-text-left {
+    text-align: left;
+}
+
 
 a,
 a:hover,
