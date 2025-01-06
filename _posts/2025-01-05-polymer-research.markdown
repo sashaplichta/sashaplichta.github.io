@@ -23,28 +23,36 @@ description: |
 
     ### Objective Function (Pretraining)
     During pretraining, the model is evaluated on its ability to predict the correct next token with the objective function, and whether the final molecule is chemically valid: 
+
     $$\mathcal{L}_{pt} = \alpha \mathcal{L}_{token} + \beta \mathcal{L}_{valid}$$
 
     Token Loss (Cross-Entropy Loss)
+
     $$\mathcal{L}_{token} = - \sum^N_{i=1} y_i \ln p_i$$
 
-    Validity Loss (binary yes/no from *Chem.MolFromSmiles('SMILES_formula')*)
+    Validity Loss (binary yes/no)
+
     $$\mathcal{L}_{valid} = 0, 1$$
 
     ### Objective Function (Fine-tuning)
-    During fine-tuning, the model is evaluated on its ability to predict the correct next token and the validity of the generated molecule, as well as how closely the properties of the final molecule align with the input properties and how well each of the auxiliary head properties are predicted. Each of these objectives is weights according to the parameters $\alpha$, $\beta$, $\gamma$, and $\delta$ to produce the objective function:
+    During fine-tuning, the model is evaluated on its ability to predict the correct next token and the validity of the generated molecule, as well as how closely the properties of the final molecule align with the input properties and how well each of the auxiliary head properties are predicted. Each of these objectives is weights according to the parameters $$\alpha$$, $$\beta$$, $$\gamma$$, and $$\delta$$ to produce the objective function:
+
     $$\mathcal{L}_{ft} = \alpha \mathcal{L}_{token} + \beta \mathcal{L}_{valid} + \gamma \mathcal{L}_{aux} + \delta \mathcal{L}_{align} $$
 
     Token Loss (Cross-Entropy Loss)
+
     $$\mathcal{L}_{token} = - \sum^N_{i=1} y_i \ln p_i$$
 
-    Validity Loss (binary yes/no from *Chem.MolFromSmiles()*)
+    Validity Loss (binary yes/no)
+
     $$\mathcal{L}_{valid} = 0, 1$$
 
     Auxiliary Head Loss (MSE)
+
     $$\mathcal{L}_{aux} = \frac1n \sum_j^n (p_j - \^p_j)^2$$
 
     Input Alignment Loss (MSE)
+
     $$\mathcal{L}_{loss} = \frac1n \sum_j^n (P_j - \^P_j)^2$$
 
 
@@ -53,15 +61,12 @@ description: |
     - PoLyInfo (https://polymer.nims.go.jp/datapoint.html): lots of polymer structure/property pairs
 
     ### Data
-    Molecules are represented using the SMILES format. For fine-tuning, property targets are normalized according to XXX. Missing properties are imputed using dedicated property models according to the scheme scheme below.
-    - $\lambda$ - 
-    - $T_g$ - 
-    - XXX
+    Molecules are represented using the SMILES format. For fine-tuning, property targets are normalized according to XXX. Missing properties are imputed using dedicated property models according to the scheme scheme below. 
 
     ### Tokenization
     Polymers have some elements and tokens distinct from most drug-like molecules (that form the foundation of many available datasets). In particular, metals may be present and * is used in some datasets to indicate polymerization points. Tokenization is performed using the INSERT dataset of experimentally-validated polymers. Any molecules containing tokens not in the vocabulary are removed from training.
 
-    Rather than use an atomic vocabulary, tokenization is performed by sequentially merging the two most common adjacent tokens until a vocabulary size of INSERT is achieved. Tokenization is performed using the DeepChem SMILESTokenizer.
+    Rather than use an atomic vocabulary, tokenization is performed by sequentially merging the two most common adjacent tokens until a chosen vocabulary size is achieved. 
 
     # Pretraining
 
