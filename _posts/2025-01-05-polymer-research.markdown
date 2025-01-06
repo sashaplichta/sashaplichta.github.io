@@ -10,10 +10,10 @@ category: AI/ML, CHBE
 description: |
     Polymers are a critical part of day-to-day life, used in everything from plastics to clothes. As we seek to reduce our reliance on petroleum-derived products, the source of many modern polymers, there is an increasing push to develop new polymers that use organic molecules as a feedstock. The search space of possible polymers is too massive to ever explore experimentally. So, we need to extract valuable insights from a massive space governed by complex relationships - seems like a perfect use case for AI. The problem at hand is generative, making it a little more complex. The post below is an up-to-date summary of our approach. As changes are made, I'll change the main text below and add a comment to the bottom describing the update.
 
-    # Polymer GPT Model Workflow
+    ## Polymer GPT Model Workflow
     The model described below is an autoregressive generator of polymers based using desired properties as input. Training consists of two stages: pre-training on chemical molecules without property direction, and training on polymers using properties to guide the generation process.
 
-    ## Model Design
+    # Model Design
     ### Architecture
     In order to stabilize training, auxiliary heads are be used to predict the difference between the desired and \"true\" properties of the generated molecule. Additional prediction heads should provide more nuanced gradients to guide model training. The main head of the model predicts the next token given the input sequence. The model architecture changes slightly between pretraining and fine-tuning. 
 
@@ -48,7 +48,7 @@ description: |
     $$\mathcal{L}_{loss} = \frac1n \sum_j^n (P_j - \^P_j)^2$$
 
 
-    ## Datasets and Data Format
+    # Datasets and Data Format
     ### Datasets
     - PoLyInfo (https://polymer.nims.go.jp/datapoint.html): lots of polymer structure/property pairs
 
@@ -63,8 +63,8 @@ description: |
 
     Rather than use an atomic vocabulary, tokenization is performed by sequentially merging the two most common adjacent tokens until a vocabulary size of INSERT is achieved. Tokenization is performed using the DeepChem SMILESTokenizer.
 
-    ## Pretraining
+    # Pretraining
 
 
-    ## Fine-tuning
+    # Fine-tuning
 ---

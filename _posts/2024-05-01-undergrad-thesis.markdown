@@ -14,9 +14,9 @@ description: |
 
     # My Approach
     
-    ## Color Matching
+    ### Color Matching
     
-    ## Machine Learning (of course)
+    ### Machine Learning (of course)
 
     # Results
 ---
