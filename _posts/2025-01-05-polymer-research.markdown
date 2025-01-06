@@ -2,7 +2,7 @@
 layout: default
 modal-id: 1
 date: 2025-01-05
-img: cabin.png
+img: polymer_generation.png
 alt: image-alt
 project-date: Ongoing
 where: Dr. Yadav's Lab, UBC

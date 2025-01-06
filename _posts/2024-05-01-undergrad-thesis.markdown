@@ -2,7 +2,7 @@
 layout: default
 modal-id: 2
 date: 2024-05-01
-img: cabin.png
+img: thesis_icon.png
 alt: image-alt
 project-date: May, 2025
 where: Dr. Frostad's Lab, UBC
