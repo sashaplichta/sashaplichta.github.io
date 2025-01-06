@@ -505,3 +505,9 @@ footer .footer-below {
 .markdown-content p {
     text-align: left;
 }
+
+.markdown-content img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

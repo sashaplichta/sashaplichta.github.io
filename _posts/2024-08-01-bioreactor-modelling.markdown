@@ -46,7 +46,7 @@ description: |
 
     $$ \mu_g = \frac{\mu_{max} S}{K_S + S} $$
 
-    $$ F = ((S_t - S_{t-1}) + m_S X + \frac{\mu_g}{Y_{X/S}} X) \frac{V}{S_{feed} + \alpha C_S S - (1 + \alpha) S} $$
+    $$ F = ((S_t - S_{t-1}) + m_S X + \frac{\mu_g}{Y_{X/S}} X) \frac{V}{S_{feed} + \alpha C_S S_t - (1 + \alpha) S_t} $$
 
     $$ \frac{dX}{dt}=\frac{F}{V}\left(\alpha C_XX-\left(1+\alpha \right)X\right)+\mu _gX $$
 

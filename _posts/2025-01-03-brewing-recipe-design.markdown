@@ -1,7 +1,7 @@
 ---
 layout: default
-modal-id: 3
-date: 2025-01-18
+modal-id: 2
+date: 2025-01-03
 img: labelled_brewing.png
 alt: image-alt
 project-date: Ongoing
