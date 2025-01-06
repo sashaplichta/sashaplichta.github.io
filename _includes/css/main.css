@@ -8,6 +8,10 @@
     overflow-x: hidden;
 }
 
+body.text-left {
+    text-align: left;
+}
+
 p {
     font-size: 20px;
 }
@@ -481,8 +485,4 @@ footer .footer-below {
 .modal.fade.in {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
-}
-
-.text-left {
-    text-align: left;
 }
