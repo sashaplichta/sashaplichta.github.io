@@ -12,8 +12,8 @@ description: |
 
     # What's Happening
 
-    # Our (Hardcoded) Algorithm
+    # (Hardcoded) Algorithm
 
-    # Our Reinforcement-Learning Model
+    # Reinforcement-Learning Model
 
 ---
