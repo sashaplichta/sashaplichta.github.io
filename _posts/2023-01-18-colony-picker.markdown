@@ -2,7 +2,7 @@
 layout: default
 modal-id: 3
 date: 2023-01-18
-img: opentrons_icon.png
+img: labelled_opentrons.png
 alt: image-alt
 project-date: January 2020
 where: Dr. Yadav's Lab, UBC

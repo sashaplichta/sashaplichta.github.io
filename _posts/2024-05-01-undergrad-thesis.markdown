@@ -2,9 +2,9 @@
 layout: default
 modal-id: 2
 date: 2024-05-01
-img: thesis_icon.png
+img: labelled_thesis.png
 alt: image-alt
-project-date: May, 2025
+project-date: May, 2024
 where: Dr. Frostad's Lab, UBC
 category: AI/ML, CHBE
 description: |
