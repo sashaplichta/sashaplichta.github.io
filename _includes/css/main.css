@@ -511,3 +511,8 @@ footer .footer-below {
     margin-left: auto;
     margin-right: auto;
 }
+
+.markdown-content ul,
+.markdown-content ol {
+    text-align: left;
+}
