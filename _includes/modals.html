@@ -28,13 +28,13 @@
               </li>
               {% endif %}
               {% if post.category %}
-              <li>Service:
+              <li>Categories:
                 <strong>{{ post.category }}</strong>
               </li>
               {% endif %}
             </ul>
             {% if post.description %}
-            <p style="text-align: left;">{{ post.description | markdownify }}</p>
+            <p>{{ post.description | markdownify }}</p>
             {% endif %}
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
               Close</button>
