@@ -4,7 +4,7 @@ modal-id: 1
 date: 2025-01-05
 img: labelled_polymer.png
 alt: image-alt
-project-date: Ongoing
+project-date: September 2024 - Present
 where: Dr. Yadav's Lab, UBC
 category: AI/ML, CHBE
 description: |

@@ -4,7 +4,7 @@ modal-id: 3
 date: 2025-01-01
 img: labelled_plant.png
 alt: image-alt
-project-date: Ongoing
+project-date: January 2025 - Present
 where: Personal
 category: AI/ML, Biology
 description: |

@@ -4,7 +4,7 @@ modal-id: 2
 date: 2025-01-03
 img: labelled_brewing.png
 alt: image-alt
-project-date: Ongoing
+project-date: January 2025 - Present
 where: BIoT Design Team, UBC
 category: AI/ML, CHBE
 description: |
