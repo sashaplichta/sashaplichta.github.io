@@ -33,11 +33,14 @@
               </li>
               {% endif %}
             </ul>
-            <div class="text-left">
-              {% if post.description %}
+            <!-- <div class="text-left">
+              {% if post.description %} -->
               <!-- <p>{{ post.description | markdownify }}</p> -->
-              <p class="modal-body-text-left">{{ post.description | markdownify }}</p>
+              <!-- <p class="modal-body-text-left">{{ post.description | markdownify }}</p>
               {% endif %}
+            </div> -->
+            <div class="markdown-content">
+              {{ post.description | markdownify }}
             </div>
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
               Close</button>
