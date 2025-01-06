@@ -487,3 +487,7 @@ footer .footer-below {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
 }
+
+.text-left {
+    text-align: left;
+}
