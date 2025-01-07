@@ -62,11 +62,6 @@ permalink: pretty
 #       type: "posts"
 #     values:
 #       permalink: ""
-#   - scope:
-#       path: ""
-#       type: "models"
-#     values:
-#       permalink: ""
 
 # Define collections
 collections:
