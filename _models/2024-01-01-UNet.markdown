@@ -2,12 +2,17 @@
 layout: default
 modal-id: 11
 date: 2024-01-01
-img: labelled_opentrons.png
+img: labelled_unet.png
 alt: image-alt
 project-date:
 where:
 category:
 description: |
-    XXX
+    The U-Net was first described in [this paper]() by Dr. Ronneberger and his colleagues in 2015. It was originally developed with the goal of segmenting biomedical images and leans heavily on data augmentation to make the most of a spare dataset. Here, I'll mostly focus on the model rather than the augmentations, though I'll try to compile a list of transformations the authors do.
+
+    # Model Architecture
+    Fundamentally, 
+
+    # Data Augmentation
 
 ---
