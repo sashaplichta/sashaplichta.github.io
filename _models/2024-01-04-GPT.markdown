@@ -4,9 +4,9 @@ modal-id: 14
 date: 2024-01-01
 img: labelled_opentrons.png
 alt: image-alt
-project-date:
-where:
-category:
+project-date: January 4
+where: UBC
+category: Test
 description: |
     XXX
 
