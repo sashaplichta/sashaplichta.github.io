@@ -1,6 +1,6 @@
 ---
 layout: default
-modal-id: 6
+modal-id: 106
 date: 2023-01-18
 img: labelled_opentrons.png
 alt: image-alt

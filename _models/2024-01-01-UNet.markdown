@@ -1,6 +1,6 @@
 ---
 layout: default
-modal-id: 11
+modal-id: 201
 date: 2024-01-01
 img: labelled_unet.png
 alt: image-alt
@@ -8,11 +8,25 @@ project-date:
 where:
 category:
 description: |
-    The U-Net was first described in [this paper]() by Dr. Ronneberger and his colleagues in 2015. It was originally developed with the goal of segmenting biomedical images and leans heavily on data augmentation to make the most of a spare dataset. Here, I'll mostly focus on the model rather than the augmentations, though I'll try to compile a list of transformations the authors do.
+    The U-Net was first described in [this paper](https://arxiv.org/abs/1505.04597) by Dr. Ronneberger and his colleagues in 2015. It was originally developed with the goal of segmenting biomedical images and leans heavily on data augmentation to make the most of a spare dataset. Here, I'll mostly focus on the model rather than the augmentations.
 
     # Model Architecture
-    Fundamentally, 
+    Fundamentally, the model consists of a contracting, or "encoding" half, and an expanding, or "decoding" half. The hope is that by forcing the model to contract the broad, but shallow, input to a small, information-dense representation, it will learn to identify what is "important" in the input image. This learning is reinforced by forcing the model to try to recreate the input from the compressed representation. The "U" in U-Net comes from the symmetry of the contracting and expanding tracks. This allows the authors to "cheat" a little in order to improve the precision of the output segmentation. Since for each expanding stage there is a corresponding contracting stage of the same dimensions, they concatenate the contracting representation to the expanding representation, giving the model access to both information-dense decoded information and (more) granular encoded information. The authors wanted to emphasize the model correctly learning the boundaries between different classes (cell types), so in addition to implementing skip connections (as described above), they used a weighted loss function. This loss function is a modified version of a pixel-wise softmax function and cross-entropy loss, as defined below.
 
-    # Data Augmentation
+    $$ E = \sum_{x \in \Omega} w(x) \log(p_{l(x)}(x)) $$
+
+    Here, $$x \in \Omega$$ is each pixel position, with $$\Omega \subset Z^2$$. $$p_{l(x)}$$ is the approximated maximum function - it is approximately equal to 1 for the feature channel $$k$$ that has the maximum activation ($$a_k(x)$$) and is approximately equal to 0 for all other $$k$$. The actual definition of $$p_k(x)$$ is as follows below.
+    
+    $$ p_k(x) = \frac{\exp(a_k(x))}{\sum_{k'=1}^K \exp(a_{k'}(x))} $$
+
+    The final piece to the loss function is the weighting map $$w(x)$$. This map reflects how "border-like" a cell is an forces the model to learn fine separations between classes (touching cells), as well as to artificially balance class frequencies. The authors state that the separation border is computed using morphological operations, with the weight map computed as:
+
+    $$ w(x) = w_c(x) + w_0 \exp \left( - \frac{(d_1(x) + d_2(x))^2}{2 \sigma^2} \right) $$
+
+    Here, $$w_c$$ is the weight map to balance class frequencies, $$d_1$$ denotes the distance to the border of the nearest cell, and $$d_2$$ the distance to the border of the second nearest cell. $$w_0$$ and $$\sigma$$ are both scaling parameters set by the authors.
+
+    At heart, the U-Net is a convolutional neural network. The model is composed of successive blocks consisting of two sets of a convolutional layer leading into a linear (ReLu) layer. Each block is followed by either a pooling (for encoding blocks) or upsampling (for decoding blocks) layer. I won't go too much into the nitty-gritty of how these work, but I believe it's worth mentioning the basic mechanism of convolutions. Each convolution consists of a 3x3 kernel composed of learnable parameters. In the original U-Net paper, the convolutions are unpadded, meaning that the output is smaller than the input. In the case of a 3x3 kernel, the output dimensions are 2 smaller than the input, since each 2D "side" of the input cannot be calculated, as the kernel "overhangs" the input.
+
+    The data augmentations used by the authors focus primarily on introducing model invariance through training the model on sliding tiles, rotating the input, and introducing elastic deformation. Finally, they use layer drop-outs during training to prevent model overfitting.
 
 ---

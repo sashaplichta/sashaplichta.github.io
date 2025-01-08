@@ -1,6 +1,6 @@
 ---
 layout: default
-modal-id: 7
+modal-id: 107
 date: 2025-01-04
 img: labelled_thesis_redux.png
 alt: image-alt
