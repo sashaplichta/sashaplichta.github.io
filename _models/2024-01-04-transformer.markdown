@@ -8,6 +8,6 @@ project-date:
 where: 
 category: 
 description: |
-    XXX
+    I know, I know, "transformer" isn't a model. But it took me a long time to wrap my head around what was happening inside a single transformer block, so I figured this was worth a page on its own.
 
 ---
