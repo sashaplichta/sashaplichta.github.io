@@ -477,6 +477,31 @@ footer .footer-below {
     transform: rotate(90deg);
 }
 
+/* Custom styling for modal tab headers */
+.modal-content-tabs {
+    margin-bottom: 20px;
+  }
+  .modal-content-tabs .nav-tabs {
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+  }
+  .modal-content-tabs .nav-tabs > li > a {
+    color: rgba(255,255,255,0.7);
+    background: transparent;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
+  .modal-content-tabs .nav-tabs > li.active > a,
+  .modal-content-tabs .nav-tabs > li.active > a:hover,
+  .modal-content-tabs .nav-tabs > li.active > a:focus {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+  }
+  
+
 .navbar-nav>.active>a {
     background-color: #{{ site.color.secondary-dark }} !important;
 }
