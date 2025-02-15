@@ -8,7 +8,7 @@ project-date:
 where:
 category:
 description: |
-    Detectron2 is an awesome model developed by Facebook's AI Research capable of a ton of computer vision tasks including object detection, instance segmentation, semantic segmentation, keypoint detection, and more. In my work, I really only used it for instance segmentation (the MaskRCNN version), so that's what I'll focus on for this description. 
+    [Detectron2](https://github.com/facebookresearch/detectron2) is an awesome model developed by Facebook's AI Research capable of a ton of computer vision tasks including object detection, instance segmentation, semantic segmentation, keypoint detection, and more. In my work, I really only used it for instance segmentation (the MaskRCNN version), so that's what I'll focus on for this description. 
 
     # The Basics
     First, what is RCNN? You might know that CNN stands for convolutional neural network, but the R is specific to Facebook's model. Here, it stands for Region, and refers to the fact that the model works by proposing regions of interest (ROIs) within which to do downstream tasks like segmentation. This lets the model overcome some of the issues associated with other large computer vision models, namely losing context as the input size grows and struggling with fine details. The Detectron2 model broadly consists of a feature extracting backbone, a region proposal network, and a collection of heads that act on the proposed regions.
