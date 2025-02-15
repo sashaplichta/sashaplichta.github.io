@@ -7,8 +7,7 @@ alt: image-alt
 project-date: January 2025 - Present
 where: Dr. Frostad's Lab, UBC
 category: AI/ML, CHBE
-subheadings:
-    - Main Content
+subheadings: False
 description: |
     Building on the model and algorithm I developed as part of my undergraduate thesis, I've been working to integrate the two solving approaches. In general, I found the model was good at making predictions that matched the continuity and structure expected of a real film, but struggled to be bound to the actual film. In contrast, the color-matching algorithm excelled at matching the film, particularly as more reference colors were used, but sometimes predicted aberrant points far off the surface. Here, I explore two corrections. The first attempts to smooth the color-matching algorithm, and the second involves normalizing the color space and training a new model to predict the surface structure. The model's solving now happens in a normalized color space, a departure from my previous work that should, hopefully, help it be agnostic to the components (and their refractive indices) of the system, so long as they are known. 
 
