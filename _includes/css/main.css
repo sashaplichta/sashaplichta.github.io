@@ -482,10 +482,10 @@ footer .footer-below {
     margin-bottom: 20px;
   }
   .modal-content-tabs .nav-tabs {
-    border-bottom: 2px solid rgba(255,255,255,0.3);
+    border-bottom: 2px solid #{{ site.color.secondary }};
   }
   .modal-content-tabs .nav-tabs > li > a {
-    color: rgba(255,255,255,0.7);
+    color: #{{ site.color.secondary }};
     background: transparent;
     border: none;
     padding: 10px 20px;
@@ -497,8 +497,13 @@ footer .footer-below {
   .modal-content-tabs .nav-tabs > li.active > a,
   .modal-content-tabs .nav-tabs > li.active > a:hover,
   .modal-content-tabs .nav-tabs > li.active > a:focus {
-    color: #fff;
-    border-bottom: 2px solid #fff;
+    color: #{{ site.color.secondary }};
+    border-bottom: 2px solid #{{ site.color.secondary }};
+  }
+
+  /* Center the modal heading */
+.modal-body h2 {
+    text-align: center;
   }
   
 
