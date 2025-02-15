@@ -536,6 +536,20 @@ footer .footer-below {
     text-align: left;
 }
 
+/* custom tab alignment */
+.tab-content h1,
+.tab-content h2,
+.tab-content h3,
+.tab-content h4,
+.tab-content h5,
+.tab-content h6 {
+    text-align: center;
+}
+
+.tab-content p {
+    text-align: left;
+}
+
 .markdown-content img {
     display: block;
     margin-left: auto;
