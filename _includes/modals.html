@@ -33,8 +33,8 @@
               </li>
               {% endif %}
             </ul>
-
-            {% if post.subheadings.size > 0 %}
+            
+            {% if post.subheadings and post.subheadings.size > 0 %}
             <div class="modal-content-tabs">
               <ul class="nav nav-tabs" role="tablist">
                 {% for heading in post.subheadings %}
