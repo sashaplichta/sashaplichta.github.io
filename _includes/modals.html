@@ -39,6 +39,8 @@
               <!-- <p class="modal-body-text-left">{{ post.description | markdownify }}</p>
               {% endif %}
             </div> -->
+
+            {% if post.subheadings %}
             <div class="modal-content-tabs">
               <ul class="nav nav-tabs" role="tablist">
                 {% for heading in post.subheadings %}
@@ -48,6 +50,19 @@
                 {% endfor %}
               </ul>
             </div>
+            
+            <div class="tab-content">
+              {% for heading in post.subheadings %}
+                <div role="tabpanel" class="tab-pane fade {% if forloop.first %}in active{% endif %}" id="{{ heading }}-{{ post.modal-id }}">
+                  {{ post.description[heading] | markdownify }}
+                </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <div class="markdown-content">
+              {{ post.description | markdownify }}
+            </div>
+            {% endif %}
 
             <!-- <div class="markdown-content">
               {{ post.description | markdownify }}
@@ -55,13 +70,7 @@
             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
               Close</button>
           </div> -->
-          <div class="tab-content">
-            {% for heading in post.subheadings %}
-              <div role="tabpanel" class="tab-pane fade {% if forloop.first %}in active{% endif %}" id="{{ heading }}-{{ post.modal-id }}">
-                {{ post.description[heading] | markdownify }}
-              </div>
-            {% endfor %}
-          </div>
+          
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
             Close</button>
         </div>
