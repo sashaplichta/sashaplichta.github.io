@@ -50,7 +50,7 @@ description: |
 
     Auxiliary Head Loss (MSE)
 
-    $$\mathcal{L}_{aux} = \frac1n \sum_j^n (p_j - \{p_j})^2$$
+    $$\mathcal{L}_{aux} = \frac1n \sum_j^n (p_j - \hat{p_j})^2$$
 
     Input Alignment Loss (MSE)
 
@@ -142,7 +142,7 @@ description: |
     - Finally we contract from 256 back to the latent dimension
 
     Adapted U-Net
-    - he desired properties are embedded using the cVAE's learned property embedder (this is just to initialize the weights - the embedding layer is unfrozen part way through training)
+    - The desired properties are embedded using the cVAE's learned property embedder (this is just to initialize the weights - the embedding layer is unfrozen part way through training)
     - The noise input is concatenated the property embedding
     - In our first layer, we expand the concatenated vector from the latent space (32) to 256
     - Next we contract to 2 * the latent space
