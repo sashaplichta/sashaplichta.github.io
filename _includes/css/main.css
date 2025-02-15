@@ -480,11 +480,16 @@ footer .footer-below {
 /* Custom styling for modal tab headers */
 .modal-content-tabs {
     margin-bottom: 20px;
-  }
-  .modal-content-tabs .nav-tabs {
+    text-align: center;  /* Centers inline/inline-block children */
+}
+
+.modal-content-tabs .nav-tabs {
+    display: inline-block; /* Allows the nav to be centered by its parent */
+    float: none;           /* Removes any default float */
     border-bottom: 2px solid #{{ site.color.secondary }};
-  }
-  .modal-content-tabs .nav-tabs > li > a {
+}
+
+.modal-content-tabs .nav-tabs > li > a {
     color: #{{ site.color.secondary }};
     background: transparent;
     border: none;
@@ -493,21 +498,16 @@ footer .footer-below {
     text-transform: uppercase;
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
-  }
-  .modal-content-tabs .nav-tabs > li.active > a,
-  .modal-content-tabs .nav-tabs > li.active > a:hover,
-  .modal-content-tabs .nav-tabs > li.active > a:focus {
+}
+
+.modal-content-tabs .nav-tabs > li.active > a,
+.modal-content-tabs .nav-tabs > li.active > a:hover,
+.modal-content-tabs .nav-tabs > li.active > a:focus {
     color: #{{ site.color.secondary }};
     border-bottom: 2px solid #{{ site.color.secondary }};
-  }
+}
 
-  /* Center the modal heading */
-.modal-body h2 {
-    text-align: center;
-  }
-  
-
-.navbar-nav>.active>a {
+.navbar-nav > .active > a {
     background-color: #{{ site.color.secondary-dark }} !important;
 }
 
