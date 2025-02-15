@@ -34,29 +34,9 @@
               {% endif %}
             </ul>
             
-            {% if post.subheadings and post.subheadings.size > 0 %}
-            <div class="modal-content-tabs">
-              <ul class="nav nav-tabs" role="tablist">
-                {% for heading in post.subheadings %}
-                  <li role="presentation" {% if forloop.first %}class="active"{% endif %}>
-                    <a href="#{{ heading }}-{{ post.modal-id }}" aria-controls="{{ heading }}" role="tab" data-toggle="tab">{{ heading }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
-            
-            <div class="tab-content">
-              {% for heading in post.subheadings %}
-                <div role="tabpanel" class="tab-pane fade {% if forloop.first %}in active{% endif %}" id="{{ heading }}-{{ post.modal-id }}">
-                  {{ post.description[heading] | markdownify }}
-                </div>
-              {% endfor %}
-            </div>
-            {% else %}
             <div class="markdown-content">
               {{ post.description | markdownify }}
             </div>
-            {% endif %}
           
           <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
             Close</button>
