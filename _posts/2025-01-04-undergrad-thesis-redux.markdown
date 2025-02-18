@@ -22,6 +22,11 @@ description: |
 
     The reason I initially leaned towards using a high-pass filter based removal over the two blurring operations is that blurring is, well, blurring. Ideally we wouldn't need to sacrifice resolution in favor of a smooth output. That said, the topology of many systems is naturally smooth (with the exception of some tiny features, as shown in [this paper]()), so blurring may well be a reasonable approach.  
 
-    # Hybrid Model
+    # Updated ML Model
+    Not much is changing off the bat in terms of our model architecture. I'd like to explore training a model whose predictions are conditioned on the refractive indices of the system components, but realistically I know this is likely a crazy inefficient solution given that we can model their interactions mathematically fairly easily. So, instead, I'm focusing on training the model to operate in a normalized color space. Below, you can see the color image corresponding to different film thicknesses, as well as the same image represented in "cycle space". What this allows us to do is have our model predict the number of "cycles" of the representative thickness at each point rather than the actual thickness. Since we know our system, we can then easily map from cycle space back to the 3D space.
+
+    Insert image here
+
+    Our model architecture is a pretty standard U-Net, just like in the first solving attempt. It consists of 5 contracting convolution + pooling layers and 5 expanding + upsampling layers. For each expanding layer, the output from the previous layer is concatenated with the corresponding (same size) contracting layer's output, as in the image below.
 
 ---
