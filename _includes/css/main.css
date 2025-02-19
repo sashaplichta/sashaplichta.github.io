@@ -522,6 +522,11 @@ footer .footer-below {
     text-align: left;
 }
 
+.modal-body .item-details {
+    text-align: left;
+    font-size: 20px; /* or whatever size you prefer */
+}
+
 /* custom markdown alignment */
 .markdown-content h1,
 .markdown-content h2,
