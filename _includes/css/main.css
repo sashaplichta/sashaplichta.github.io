@@ -514,6 +514,7 @@ footer .footer-below {
 .tab-content ul,
 .tab-content ol {
   text-align: left;
+  font-size: 20px;
 }
 
 /* Fix modal mouse wheel issues */
