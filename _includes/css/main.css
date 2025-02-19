@@ -511,6 +511,11 @@ footer .footer-below {
     background-color: #{{ site.color.secondary-dark }} !important;
 }
 
+.tab-content ul,
+.tab-content ol {
+  text-align: left;
+}
+
 /* Fix modal mouse wheel issues */
 /* https://github.com/twbs/bootstrap/issues/16297 */
 .modal.fade.in {
@@ -524,6 +529,7 @@ footer .footer-below {
 
 .portfolio-modal .modal-content .modal-body .item-details {
     text-align: left;
+    font-size: 20px;
 }
 
 /* custom markdown alignment */
