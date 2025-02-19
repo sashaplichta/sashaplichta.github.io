@@ -522,9 +522,8 @@ footer .footer-below {
     text-align: left;
 }
 
-.modal-body .item-details {
+.portfolio-modal .modal-content .modal-body .item-details {
     text-align: left;
-    font-size: 20px; /* or whatever size you prefer */
 }
 
 /* custom markdown alignment */
