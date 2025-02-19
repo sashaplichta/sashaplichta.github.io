@@ -489,6 +489,12 @@ footer .footer-below {
     border-bottom: 2px solid #{{ site.color.secondary }};
 }
 
+.tab-content li,
+.markdown-content li,
+.portfolio-modal .modal-content .modal-body .item-details li {
+  font-size: 20px !important;
+}
+
 .modal-content-tabs .nav-tabs > li > a {
     color: #{{ site.color.secondary }};
     background: transparent;
