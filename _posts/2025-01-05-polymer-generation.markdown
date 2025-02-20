@@ -160,7 +160,7 @@ description:
 
         A rough overview of the Adapted U-Net architecture is shown below.
 
-        ![PolyLDM](img/portfolio/PolyLDM.png)
+        <img src="img/portfolio/PolyLDM.png" width="600">
 
         ### Training Objective
         Diffusion models work by removing noise from the input, so our training loss function is effectively just the reconstruction error between our model's output and the previous noise step (so one step before the input). This can be calculated for each time step (i) using the formula below:
