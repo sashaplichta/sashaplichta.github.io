@@ -12,7 +12,7 @@ subheadings:
     - PolyGPT
     - PolyTAO
     - PolyVAE
-    - PolyLD
+    - PolyLDM
 description:
     Motivation: |
         Polymers are a critical part of day-to-day life, used in everything from plastics to clothes. As we seek to reduce our reliance on petroleum-derived products, the source of many modern polymers, there is an increasing push to develop new polymers that use organic molecules as a feedstock. The search space of possible polymers is too massive to ever explore experimentally. So, we need to extract valuable insights from a massive space governed by complex relationships - seems like a perfect use case for AI. The problem at hand is generative, making it a little more complex. The post below is an up-to-date summary of our approach. You can find the most up-to-date code in the[ GitHub repository](https://github.com/sashaplichta/polymer_models) for this project.
@@ -21,7 +21,7 @@ description:
         - A transformer model based on the GPT architecture (PolyGPT), pretrained on a seq-to-seq molecular autoencoding task and then fine-tuned to generate molecules from properties
         - A toned-down implementation of the SOTA polymer-generation model [PolyTAO](https://www.nature.com/articles/s41524-024-01466-5#Sec10)
         - A cVAE model loosely based on [this](https://link.springer.com/article/10.1186/s13321-018-0286-7) molecular-generation model, but using transformer blocks instead of LSTMs for the recursive generation (PolyVAE)
-        - A latent diffusion model operating in the same latent space as the cVAE, so that we can use the cVAE decoder to generate the final molecule's SMILES representation (PolyLD)
+        - A latent diffusion model operating in the same latent space as the cVAE, so that we can use the cVAE decoder to generate the final molecule's SMILES representation (PolyLDM)
 
         In order to compare the performance of these models, we devised a battery of criteria including: Chemical Validity, Uniqueness (is the generated polymer not in the training set), and Correlation with Target Properties. To evaluate the properties of polymers not present in the dataset, a small(ish) property-prediction model is trained. The model descriptions below assume the model is configured for the ultimate polymer generation task, not the initial electronic property evaluation task.
     PolyGPT: |
@@ -34,6 +34,8 @@ description:
         During **pretraining**, the auxiliary heads do not contribute to the loss, and an embedding of 0s is fed in the place of target properties. The model is trained to generate the example molecules starting with after a \<start> token and terminating in an \<end> token. 
 
         During **fine-tuning**, a simple MLP is used to encode the target properties into an embedding (the same size as the token embeddings). This is prepended to the \<start> token embedding before inference. During training, a molecule's known properties are slightly perturbed with the perturbation serving as the auxiliary head target. In theory, this should train the model to output how close the molecules true properties are to the desired, target properties.
+
+        ![PolyGPT](img/portfolio/PolyGPT.png)
 
         ### Objective Function (Pretraining)
         During pretraining, the model is evaluated on its ability to predict the correct next token with the objective function: 
@@ -84,6 +86,8 @@ description:
         - The token embeddings and position embeddings are again summed and fed into the transformer block. This time, however, the transformer also attends to the encoder's output as it tries to predict the next token
         - A linear layer maps the transformer output to the vocabulary, generating the final logits that will be passed into a softmax function during inference
 
+        ![PolyTAO](img/portfolio/PolyTAO.png)
+
         ### Training Objective
         The model was trained to generate a polymer given its properties, so the loss for each generated token during training was determined using cross entropy. This is a pretty vanilla loss function as far as autoregressive models go, but I've included the formula to calculate it below for reference:
 
@@ -113,6 +117,8 @@ description:
         - The decoded z is then prepended to the token embeddings of the input sequence ([<SOS>, <Mask>] to start) 
         - A transformer block with causal self-attention is then used to autoregressively generate the polymer output by predicting the embedding of the <Mask> token, which is then fed to a linear layer mapping it to the vocabulary
 
+        ![PolyVAE](img/portfolio/PolyVAE.png)
+
         ### Training Objective
         During training, the loss function is defined by two components: reconstruction error, and Kullback-Leiber (KL) divergence. The reconstruction error, as in the transformer-based models, is a measure of how closely the model output resembles the input molecule. The KL divergence, however, represents a measure of how closely the VAE's learned parameters adhere to the normal distribution. This represents a form of regularization and helps keep the model from overfitting, something that will be important when the model is used for polymer generation. The loss functions are summarized below:
 
@@ -130,7 +136,7 @@ description:
         ### Data Processing
         The VAE's handling of data is a little messy since it needs to map an arbitrary sequence length to a single embedding vector, model the latent distribution, and map back to a sequence, all while considering the property conditioning. I'm honestly not sure how the best way to incorporate this conditioning is so I imagine this model may change a bit. In particular, we could add the conditioning vector before the first transformer block, encorporating it into the embedded representation, or we could incorporate it after we derive the polymer embedding. It'll probably take some tuning to figure out what works best, so I'll be sure to update this as we try new things.
 
-    PolyLD: |
+    PolyLDM: |
         I have not (so far) found an example of anyone using a latent diffusion model for polymer design. I have, however, found some interesting papers describing how they can be used for molecular/drug design, so I wanted to see if they could be adapted to our problem here. Latent diffusion models are perhaps most well known for their incredible performance on image generation tasks (think Stable Diffusion), but they have found wide application with other generative problems. Latent diffusion models, like all diffusion models,  learn to progressively de-noise the input. This allows them to generate the output from pure noise, enabling the generation of diverse outputs very easily, much like VAEs. Unfortunately, denoising a large input can get very expensive (images or videos might be the most intuitive example). What's interesting about latent diffusion models in particular is the fact that they bypass this limitation by performing the denoising process in latent space before passing the denoised representation to a decoder. In our case, the latent diffusion model operates in the same latent space the cVAE model and uses its decoder to generate the final output. This means that their performance is intertwined, and if we train a bad cVAE model it'll be hard/impossible to get a good latent diffusion model, making it a little challenging to explore these models in a bakeoff like this.
 
         # Model Design
@@ -151,6 +157,10 @@ description:
         - Next we contract to 2 * the latent space
         - We then map from 2 * the latent space back to 256, before concatenating the output of this layer with the output of the first layer
         - Finally, we map back from 256 to the latent space, obtaining the final, denoised vector
+
+        A rough overview of the Adapted U-Net architecture is shown below.
+
+        ![PolyLDM](img/portfolio/PolyLDM.png)
 
         ### Training Objective
         Diffusion models work by removing noise from the input, so our training loss function is effectively just the reconstruction error between our model's output and the previous noise step (so one step before the input). This can be calculated for each time step (i) using the formula below:
