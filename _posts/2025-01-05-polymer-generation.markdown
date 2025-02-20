@@ -35,7 +35,9 @@ description:
 
         During **fine-tuning**, a simple MLP is used to encode the target properties into an embedding (the same size as the token embeddings). This is prepended to the \<start> token embedding before inference. During training, a molecule's known properties are slightly perturbed with the perturbation serving as the auxiliary head target. In theory, this should train the model to output how close the molecules true properties are to the desired, target properties.
 
-        ![PolyGPT](img/portfolio/PolyGPT.png)
+        <div style="text-align: center;">
+            <img src="img/portfolio/PolyGPT.png" width="800">
+        </div>
 
         ### Objective Function (Pretraining)
         During pretraining, the model is evaluated on its ability to predict the correct next token with the objective function: 
@@ -86,7 +88,9 @@ description:
         - The token embeddings and position embeddings are again summed and fed into the transformer block. This time, however, the transformer also attends to the encoder's output as it tries to predict the next token
         - A linear layer maps the transformer output to the vocabulary, generating the final logits that will be passed into a softmax function during inference
 
-        ![PolyTAO](img/portfolio/PolyTAO.png)
+        <div style="text-align: center;">
+            <img src="img/portfolio/PolyTAO.png" width="800">
+        </div>
 
         ### Training Objective
         The model was trained to generate a polymer given its properties, so the loss for each generated token during training was determined using cross entropy. This is a pretty vanilla loss function as far as autoregressive models go, but I've included the formula to calculate it below for reference:
@@ -117,7 +121,9 @@ description:
         - The decoded z is then prepended to the token embeddings of the input sequence ([<SOS>, <Mask>] to start) 
         - A transformer block with causal self-attention is then used to autoregressively generate the polymer output by predicting the embedding of the <Mask> token, which is then fed to a linear layer mapping it to the vocabulary
 
-        ![PolyVAE](img/portfolio/PolyVAE.png)
+        <div style="text-align: center;">
+            <img src="img/portfolio/PolyVAE.png" width="800">
+        </div>
 
         ### Training Objective
         During training, the loss function is defined by two components: reconstruction error, and Kullback-Leiber (KL) divergence. The reconstruction error, as in the transformer-based models, is a measure of how closely the model output resembles the input molecule. The KL divergence, however, represents a measure of how closely the VAE's learned parameters adhere to the normal distribution. This represents a form of regularization and helps keep the model from overfitting, something that will be important when the model is used for polymer generation. The loss functions are summarized below:
@@ -160,7 +166,9 @@ description:
 
         A rough overview of the Adapted U-Net architecture is shown below.
 
-        <img src="img/portfolio/PolyLDM.png" width="600">
+        <div style="text-align: center;">
+            <img src="img/portfolio/PolyLDM.png" width="800">
+        </div>
 
         ### Training Objective
         Diffusion models work by removing noise from the input, so our training loss function is effectively just the reconstruction error between our model's output and the previous noise step (so one step before the input). This can be calculated for each time step (i) using the formula below:
