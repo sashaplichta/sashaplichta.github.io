@@ -571,6 +571,7 @@ footer .footer-below {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 600px;
 }
 
 .markdown-content ul,

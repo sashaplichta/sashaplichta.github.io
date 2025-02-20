@@ -143,14 +143,14 @@ description:
         ### Architecture
         Latent diffusion model architectures can be quite diverse. Ordinary diffusion models often favor a U-Net architecture due to its ability to capture both high-level and granular features. In our case, however, the input is already in a compressed latent space. In theory, this means we could get away with just a standard MLP network with a bunch of same-sized layers. While I do explore this, I wanted to also test if we could do better by adapting something more like a U-Net, but without any convolutions. So, we've got two (small) models to test in this section:
 
-        Simple MLP
+        **Simple MLP**
         - The desired properties are embedded using the cVAE's learned property embedder (this is just to initialize the weights - the embedding layer is unfrozen part way through training)
         - The noise input is concatenated the property embedding
         - The first layer maps the concatenated vector from the latent space (32) to 256
         - We pass the output of the first layer through 2 more layers of size 256
         - Finally we contract from 256 back to the latent dimension
 
-        Adapted U-Net
+        **Adapted U-Net**
         - The desired properties are embedded using the cVAE's learned property embedder (this is just to initialize the weights - the embedding layer is unfrozen part way through training)
         - The noise input is concatenated the property embedding
         - In our first layer, we expand the concatenated vector from the latent space (32) to 256
