@@ -118,8 +118,8 @@ description:
         - Two linear layers are then used to predict the parameters of the probabilistic latent space (mean and log variance)
         - We then use the reparameterization trick ($$z = \mu + \epsilon * \exp(0.5 * log_var))$$ to get a random sample in a differentiable way
         - The latent sample is concatenated with the latent embedding of the properties, $$E_{prop}$$, and fed into the main VAE decoder (another series of linear layers expanding from the concatenated latent space to the embedding space)
-        - The decoded z is then prepended to the token embeddings of the input sequence ([<SOS>, <Mask>] to start) 
-        - A transformer block with causal self-attention is then used to autoregressively generate the polymer output by predicting the embedding of the <Mask> token, which is then fed to a linear layer mapping it to the vocabulary
+        - The decoded z is then prepended to the token embeddings of the input sequence ([\<SOS\>, \<Mask\>] to start) 
+        - A transformer block with causal self-attention is then used to autoregressively generate the polymer output by predicting the embedding of the \<Mask\> token, which is then fed to a linear layer mapping it to the vocabulary
 
         <div style="text-align: center;">
             <img src="img/portfolio/PolyVAE.png" width="800">
